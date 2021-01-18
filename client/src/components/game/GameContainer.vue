@@ -42,7 +42,19 @@ export default {
     addLetterToQueue: function (letter) {
       var letterVal = letter.toLowerCase();
       this.$refs.pluckQueue.insertEntryIntoQueue(letterVal, 'valid');
+    },
+    removeLetterFromQueue: function () {
+
     }
+  },
+  mounted: function () {
+    window.addEventListener("keypress", e => {
+      if ((e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 97 && e.keyCode <= 122)) {
+        this.addLetterToQueue(String.fromCharCode(e.keyCode));
+      } else if (e.keyCode == 13) {
+        // enter
+      }
+    });
   }
 };
 </script>
