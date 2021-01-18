@@ -19,7 +19,8 @@
         outlined
         icon
         large
-        rounded>
+        rounded
+        @click.native="shufflePluckables()">
         <v-icon>mdi-cached</v-icon>
       </v-btn>
       <v-btn
@@ -48,7 +49,10 @@ export default {
       this.$parent.addLetterToQueue(p);
     },
     removeLetterFromQueue: function () {
-      this.$parent.removeLetterFromQueue()
+      this.$parent.removeLetterFromQueue();
+    },
+    shufflePluckables: function () {
+      this.$parent.shufflePluckables();
     }
   }
 };
