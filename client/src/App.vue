@@ -1,17 +1,19 @@
 <template>
   <div id="app">
     <AppNavbar />
-    
+    <GameContainer />
   </div>
 </template>
 
 <script>
 import AppNavbar from './components/AppNavbar'
+import GameContainer from './components/game/GameContainer'
 
 export default {
   name: 'App',
   components: {
-    AppNavbar
+    AppNavbar,
+    GameContainer
   }
 }
 </script>
