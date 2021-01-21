@@ -10,9 +10,6 @@ import Vue from 'vue'
 
 export default {
   name: 'PluckQueue',
-  components: {
-    QueueEntry
-  },
   methods: {
     insertEntryIntoQueue: function(value, validity) {
       var EntryComponentClass = Vue.extend(QueueEntry);

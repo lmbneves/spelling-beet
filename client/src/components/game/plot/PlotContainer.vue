@@ -27,7 +27,8 @@
         elevation="0"
         outlined
         large
-        rounded>
+        rounded
+        @click.native="submitQueue()">
         Pluck</v-btn>
     </div>
   </v-container>
@@ -53,6 +54,9 @@ export default {
     },
     shufflePluckables: function () {
       this.$parent.shufflePluckables();
+    },
+    submitQueue: function () {
+      this.$parent.submitQueue();
     }
   }
 };
