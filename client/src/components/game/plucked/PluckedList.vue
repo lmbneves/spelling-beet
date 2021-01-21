@@ -35,6 +35,10 @@ export default {
   text-align: left;
 }
 
+.plucked-header {
+  margin-bottom: 18px;
+}
+
 .plucked-list {
   list-style-type: none;
   padding: 0;
@@ -47,12 +51,12 @@ export default {
   column-gap: 0px;
   column-fill: auto;
   overflow-y: scroll;
-  height: 480px;
+  height: 440px;
 }
 
 .plucked-item {
   text-transform: capitalize;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 
