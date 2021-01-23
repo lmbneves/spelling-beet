@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="game-page__wrapper">
     <v-row>
       <v-col
         cols="12"
@@ -77,6 +77,8 @@ export default {
             var word = res.data.word;
             this.pluckedWords.push(word);
             // this.$refs.pluckedList.addValidWordToList(word);
+          } else {
+            this.flashPluckAlert("Pluck doesn't exist")
           }
         });
     },
@@ -134,7 +136,7 @@ export default {
       
       window.setInterval(() => {
         this.pluckErrorAlert = false;
-      }, 2400);
+      }, 3000);
     }
   },
   mounted: function () {
@@ -155,7 +157,12 @@ export default {
 </script>
 
 <style scoped>
+.game-page__wrapper {
+  margin-top: 100px;
+}
+
 .pluck-alert__wrapper {
+  margin-top: 20px;
   min-height: 40px;
 }
 

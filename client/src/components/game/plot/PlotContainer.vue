@@ -20,6 +20,7 @@
         icon
         large
         rounded
+        class="cache-btn"
         @click.native="shufflePluckables()">
         <v-icon>mdi-cached</v-icon>
       </v-btn>
@@ -29,7 +30,8 @@
         large
         rounded
         @click.native="submitQueue()">
-        Pluck</v-btn>
+        Pluck
+      </v-btn>
     </div>
   </v-container>
 </template>
@@ -65,5 +67,9 @@ export default {
 <style scoped>
 .plot-action-btns {
   margin-top: 20px;
+}
+
+.cache-btn {
+  margin: 0 12px;
 }
 </style>
