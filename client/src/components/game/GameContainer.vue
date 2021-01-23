@@ -28,7 +28,7 @@
       <v-col
         cols="12"
         md="6">
-        <PluckedList :pluckedWords="pluckedWords" />
+        <PluckedList />
       </v-col>
     </v-row>
   </v-container>
@@ -52,7 +52,6 @@ export default {
       pluckables: [],
       cream: String,
       currentQueue: '',
-      pluckedWords: [],
       pluckErrorAlert: false,
       pluckErrorMsg: '',
       invalidPlucks: 0
@@ -76,7 +75,8 @@ export default {
         .then((res) => {
           if (res.data.isWord) {
             var word = res.data.word;
-            this.pluckedWords.push(word);
+            this.$store.commit('addPluckedWord', word);
+            // this.pluckedWords.push(word);
             // this.$refs.pluckedList.addValidWordToList(word);
           } else {
             this.flashPluckAlert("Pluck doesn't exist")
@@ -106,7 +106,7 @@ export default {
       } else if (this.invalidPlucks > 0) {
         this.flashPluckAlert("Pluck contains invalid letters");
         console.log("submitted word contains invalid letters")
-      } else if (this.pluckedWords.includes(this.currentQueue)) {
+      } else if (this.$store.state.pluckedWords.includes(this.currentQueue)) {
         this.flashPluckAlert("Already plucked");
         console.log("submitted word contains all valid letters but was already found")
       } else {

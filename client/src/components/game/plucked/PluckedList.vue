@@ -14,12 +14,14 @@
 <script>
 export default {
   name: 'PluckedList',
-  props: {
-    pluckedWords: Array
-  },
   data: function () {
     return {
       //
+    }
+  },
+  computed: {
+    pluckedWords: function() {
+      return this.$store.state.pluckedWords;
     }
   }
 };
