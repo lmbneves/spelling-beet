@@ -134,8 +134,7 @@ export default {
       
       window.setInterval(() => {
         this.pluckErrorAlert = false;
-        this.pluckErrorMsg = '';
-      }, 2000);
+      }, 2400);
     }
   },
   mounted: function () {
