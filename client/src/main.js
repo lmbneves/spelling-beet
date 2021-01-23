@@ -1,8 +1,12 @@
 import Vue from 'vue'
+
 import Vuex from 'vuex'
-import App from './App.vue'
+import createPersistedState from "vuex-persistedstate";
+
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+
+import App from './App.vue'
 
 Vue.config.productionTip = false
 
@@ -10,6 +14,9 @@ Vue.use(Vuex)
 Vue.use(Vuetify)
 
 const store = new Vuex.Store({
+  plugins: [createPersistedState({
+    storage: window.sessionStorage
+  })],
   state: {
     pluckedWords: []
   },
