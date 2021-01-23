@@ -2,14 +2,27 @@
   <v-container>
     <v-row>
       <v-col
-        cols="12">
-        <PluckQueue ref="pluckQueue" />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col
         cols="12"
         md="6">
+        <v-row>
+          <v-spacer></v-spacer>
+          <v-col
+            cols="5">
+            <div class="pluck-alert__wrapper">
+              <v-alert
+                :value="pluckErrorAlert"
+                class="pluck-alert__content"
+                color="#47839B"
+                dark
+                transition="fade-transition"
+                dense> 
+                {{ pluckErrorMsg }} 
+              </v-alert>
+            </div>
+          </v-col>
+          <v-spacer></v-spacer>
+        </v-row>
+        <PluckQueue ref="pluckQueue" />
         <PlotContainer :pluckables="pluckables"/>
       </v-col>
       <v-col
@@ -39,7 +52,9 @@ export default {
       pluckables: [],
       cream: String,
       currentQueue: '',
-      pluckedWords: []
+      pluckedWords: [],
+      pluckErrorAlert: false,
+      pluckErrorMsg: ''
     }
   },
   methods: {
@@ -80,16 +95,16 @@ export default {
     },
     submitQueue: function () {
       if (!this.currentQueue.includes(this.cream)) {
-        // TODO: show reject animation -- word does not include daily letter
+        this.flashPluckAlert("Missing the cream of the crop");
         console.log("submitted word does not contain daily letter")
       } else if (this.currentQueue.length <= 3) {
-        // TODO: show reject animation -- word is too short
+        this.flashPluckAlert("Pluck is too short");
         console.log("submitted word is too short")
       } else if (this.invalidPlucks > 0) {
-        // TODO: show reject animation -- contains invalid letters
+        this.flashPluckAlert("Pluck contains invalid letters");
         console.log("submitted word contains invalid letters")
       } else if (this.pluckedWords.includes(this.currentQueue)) {
-        // TODO: show reject animation -- already found
+        this.flashPluckAlert("Already plucked");
         console.log("submitted word contains all valid letters but was already found")
       } else {
         console.log(this.currentQueue);
@@ -101,18 +116,27 @@ export default {
       this.$refs.pluckQueue.clearQueue();
     },
     shufflePluckables: function() {
-        var a = this.pluckables.filter(l => l != this.cream);
-        var n = a.length;
+      var a = this.pluckables.filter(l => l != this.cream);
+      var n = a.length;
 
-        for(var i = n - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1));
-            var tmp = a[i];
-            a[i] = a[j];
-            a[j] = tmp;
-        }
-        a.splice(0, 0, this.cream);
-        this.pluckables = a;
+      for(var i = n - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var tmp = a[i];
+          a[i] = a[j];
+          a[j] = tmp;
       }
+      a.splice(0, 0, this.cream);
+      this.pluckables = a;
+    },
+    flashPluckAlert: function(errMsg) {
+      this.pluckErrorMsg = errMsg;
+      this.pluckErrorAlert = true;
+      
+      window.setInterval(() => {
+        this.pluckErrorAlert = false;
+        this.pluckErrorMsg = '';
+      }, 2000);
+    }
   },
   mounted: function () {
     this.getPluckables();
@@ -130,3 +154,14 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.pluck-alert__wrapper {
+  min-height: 40px;
+}
+
+.pluck-alert__content {
+  font-size: 9pt;
+}
+
+</style>
