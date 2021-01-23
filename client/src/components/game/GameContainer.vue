@@ -54,7 +54,8 @@ export default {
       currentQueue: '',
       pluckedWords: [],
       pluckErrorAlert: false,
-      pluckErrorMsg: ''
+      pluckErrorMsg: '',
+      invalidPlucks: 0
     }
   },
   methods: {
