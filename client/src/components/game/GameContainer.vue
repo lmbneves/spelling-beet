@@ -89,6 +89,8 @@ export default {
       var validity = (letterVal == this.cream) ? "required" : (validLetters.includes(letterVal) ? "valid" : "invalid");
       if (validity == "invalid") this.invalidPlucks++;
 
+      // TODO: if user deletes invalid letter, word still considered invalid. need to adjust letter and validity tracking
+
       this.$refs.pluckQueue.insertEntryIntoQueue(letterVal, validity);
       this.currentQueue += letterVal;
     },
