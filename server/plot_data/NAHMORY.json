@@ -1,0 +1,307 @@
+{
+    "pangram_count": 1, 
+    "letters": "NAHMORY", 
+    "total_score": 118, 
+    "word_count": 57, 
+    "pangram_list": [
+        "HARMONY"
+    ], 
+    "generation_info": {
+        "total_letter_count": 7, 
+        "max_total_score": 200, 
+        "min_total_score": 50, 
+        "path": "word_lists/TWL06.txt", 
+        "max_word_count": 80, 
+        "manual_puzzle": true, 
+        "min_word_length": 4, 
+        "count_pangrams": 1, 
+        "min_word_count": 30
+    }, 
+    "word_list": [
+        {
+            "score": 3, 
+            "word": "AMARNA", 
+            "pangram": false
+        }, 
+        {
+            "score": 3, 
+            "word": "AMMONO", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "ANNA", 
+            "pangram": false
+        }, 
+        {
+            "score": 3, 
+            "word": "ANNONA", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "ANNOY", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "ANOA", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "ANOMY", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "ANON", 
+            "pangram": false
+        }, 
+        {
+            "score": 3, 
+            "word": "ANONYM", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "ANYON", 
+            "pangram": false
+        }, 
+        {
+            "score": 4, 
+            "word": "HARMONY", 
+            "pangram": true
+        }, 
+        {
+            "score": 4, 
+            "word": "HOMONYM", 
+            "pangram": false
+        }, 
+        {
+            "score": 5, 
+            "word": "HOMONYMY", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "HONAN", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "HONOR", 
+            "pangram": false
+        }, 
+        {
+            "score": 5, 
+            "word": "HONORARY", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "HORN", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "HORNY", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "HYMN", 
+            "pangram": false
+        }, 
+        {
+            "score": 4, 
+            "word": "HYMNARY", 
+            "pangram": false
+        }, 
+        {
+            "score": 3, 
+            "word": "MAMMON", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "MANA", 
+            "pangram": false
+        }, 
+        {
+            "score": 3, 
+            "word": "MANANA", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "MANNA", 
+            "pangram": false
+        }, 
+        {
+            "score": 3, 
+            "word": "MANNAN", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "MANO", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "MANOR", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "MANY", 
+            "pangram": false
+        }, 
+        {
+            "score": 3, 
+            "word": "MAROON", 
+            "pangram": false
+        }, 
+        {
+            "score": 4, 
+            "word": "MARRANO", 
+            "pangram": false
+        }, 
+        {
+            "score": 3, 
+            "word": "MARRON", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "MAYAN", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "MOAN", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "MONO", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "MONY", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "MOON", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "MOONY", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "MORN", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "MORON", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "MYNA", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "MYNAH", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "NAAN", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "NANA", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "NANNY", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "NARY", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "NOMA", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "NONA", 
+            "pangram": false
+        }, 
+        {
+            "score": 3, 
+            "word": "NONMAN", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "NOON", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "NORM", 
+            "pangram": false
+        }, 
+        {
+            "score": 3, 
+            "word": "RAMONA", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "RAYON", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "ROAN", 
+            "pangram": false
+        }, 
+        {
+            "score": 2, 
+            "word": "ROMAN", 
+            "pangram": false
+        }, 
+        {
+            "score": 3, 
+            "word": "ROMANO", 
+            "pangram": false
+        }, 
+        {
+            "score": 3, 
+            "word": "RONYON", 
+            "pangram": false
+        }, 
+        {
+            "score": 1, 
+            "word": "YARN", 
+            "pangram": false
+        }
+    ]
+}

@@ -1,5 +1,12 @@
+const fs = require('fs');
+
 module.exports = {
-  initDailyWord: function() {
-    return "harmoy".split("");
+  initGame: function() {
+    const plotDataCode = "NAHMORY";
+    var plotDataPath = "./plot_data/" + plotDataCode + ".json";
+
+    const data = JSON.parse(fs.readFileSync(plotDataPath, 'utf8'));
+    console.log(data);
+    return data;
   }
 }

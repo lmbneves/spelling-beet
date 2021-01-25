@@ -23,7 +23,7 @@
           <v-spacer></v-spacer>
         </v-row>
         <PluckQueue ref="pluckQueue" />
-        <PlotContainer :pluckables="pluckables"/>
+        <PlotContainer />
       </v-col>
       <v-col
         cols="12"
@@ -49,8 +49,6 @@ export default {
   },
   data: function () {
     return {
-      pluckables: [],
-      cream: String,
       currentQueue: '',
       pluckErrorAlert: false,
       pluckErrorMsg: '',
@@ -58,16 +56,8 @@ export default {
     }
   },
   methods: {
-    getPluckables: function() {
-      axios
-        .get('http://localhost:3000/plot')
-        .then((res) => {
-          this.pluckables = res.data.letters;
-          this.cream = res.data.required;
-          this.pluckables.splice(0, 0, this.cream);
-        }).then(() => {
-          this.shufflePluckables();
-        });
+    initGame: function() {
+      this.$store.dispatch( "initGame" );
     },
     checkQueue: function(wordToCheck) {
       axios
@@ -75,7 +65,7 @@ export default {
         .then((res) => {
           if (res.data.isWord) {
             var word = res.data.word;
-            this.$store.commit('addPluckedWord', word);
+            this.$store.commit('addPluckedWord', word.toLowerCase());
             // this.pluckedWords.push(word);
             // this.$refs.pluckedList.addValidWordToList(word);
           } else {
@@ -84,7 +74,7 @@ export default {
         });
     },
     addLetterToQueue: function (letter) {
-      var letterVal = letter.toLowerCase();
+      var letterVal = letter.toUpperCase();
       var validLetters = JSON.parse(JSON.stringify(this.pluckables));
       var validity = (letterVal == this.cream) ? "required" : (validLetters.includes(letterVal) ? "valid" : "invalid");
       if (validity == "invalid") this.invalidPlucks++;
@@ -142,8 +132,16 @@ export default {
       }, 3000);
     }
   },
+  computed: {
+    pluckables: function () {
+      return this.$store.getters.pluckablesList;
+    },
+    cream: function () {
+      return this.$store.getters.creamOfTheCrop;
+    }
+  },
   mounted: function () {
-    this.getPluckables();
+    this.initGame();
 
     window.addEventListener("keyup", e => {
       if (e.keyCode == 8 || e.keyCode == 46) this.removeLetterFromQueue();

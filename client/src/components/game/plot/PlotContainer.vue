@@ -44,8 +44,10 @@ export default {
   components: {
     PlotButton
   },
-  props: {
-    pluckables: Array
+  computed: {
+    pluckables: function () {
+      return this.$store.getters.pluckablesList;
+    }
   },
   methods: {
     addLetterToQueue: function (p) {
