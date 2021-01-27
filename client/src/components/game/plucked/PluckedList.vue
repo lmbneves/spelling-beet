@@ -14,14 +14,9 @@
 <script>
 export default {
   name: 'PluckedList',
-  data: function () {
-    return {
-      //
-    }
-  },
   computed: {
     pluckedWords: function() {
-      return this.$store.state.pluckedWords;
+      return this.$store.getters.getPluckedWords;
     }
   }
 };
@@ -57,10 +52,13 @@ export default {
 }
 
 .plucked-item {
-  text-transform: capitalize;
+  text-transform: lowercase;
   margin-bottom: 8px;
 }
 
+.plucked-item::first-letter {
+  text-transform: capitalize;
+}
 
 @media screen and (min-width: 768px) {
   .plucked-wrapper {

@@ -17,6 +17,9 @@ const getters = {
   },
   creamOfTheCrop: (state) => {
     return state.game.required;
+  },
+  getPluckedWords: (state) => {
+    return state.pluckedWords;
   }
 }
 
@@ -46,6 +49,7 @@ const mutations = {
   },
   addPluckedWord: function (state, word) {
     state.pluckedWords.push(word);
+    // st.$set(state.pluckedWords, state.pluckedWords.length, word);
   }
 }
 

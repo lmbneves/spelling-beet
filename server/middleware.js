@@ -6,7 +6,6 @@ module.exports = {
     var plotDataPath = "./plot_data/" + plotDataCode + ".json";
 
     const data = JSON.parse(fs.readFileSync(plotDataPath, 'utf8'));
-    console.log(data);
     return data;
   }
 }

@@ -4,24 +4,9 @@
       <v-col
         cols="12"
         md="6">
-        <v-row>
-          <v-spacer></v-spacer>
-          <v-col
-            cols="5">
-            <div class="pluck-alert__wrapper">
-              <v-alert
-                :value="pluckErrorAlert"
-                class="pluck-alert__content"
-                color="#47839B"
-                dark
-                transition="fade-transition"
-                dense> 
-                {{ pluckErrorMsg }} 
-              </v-alert>
-            </div>
-          </v-col>
-          <v-spacer></v-spacer>
-        </v-row>
+        <GameAlert 
+          :pluckErrorAlert="pluckErrorAlert" 
+          :pluckErrorMsg="pluckErrorMsg" />
         <PluckQueue ref="pluckQueue" />
         <PlotContainer />
       </v-col>
@@ -36,6 +21,7 @@
 
 <script>
 import axios from 'axios'
+import GameAlert from './GameAlert'
 import PlotContainer from './plot/PlotContainer'
 import PluckedList from './plucked/PluckedList'
 import PluckQueue from './queue/PluckQueue'
@@ -43,6 +29,7 @@ import PluckQueue from './queue/PluckQueue'
 export default {
   name: 'GameContainer',
   components: {
+    GameAlert,
     PlotContainer,
     PluckedList,
     PluckQueue
@@ -65,11 +52,9 @@ export default {
         .then((res) => {
           if (res.data.isWord) {
             var word = res.data.word;
-            this.$store.commit('addPluckedWord', word.toLowerCase());
-            // this.pluckedWords.push(word);
-            // this.$refs.pluckedList.addValidWordToList(word);
+            this.$store.commit('addPluckedWord', word.toUpperCase());
           } else {
-            this.flashPluckAlert("Pluck doesn't exist")
+            this.flashPluckAlert("Pluck doesn't exist");
           }
         });
     },
@@ -98,11 +83,10 @@ export default {
       } else if (this.invalidPlucks > 0) {
         this.flashPluckAlert("Pluck contains invalid letters");
         console.log("submitted word contains invalid letters")
-      } else if (this.$store.state.pluckedWords.includes(this.currentQueue)) {
+      } else if (this.pluckedWords.includes(this.currentQueue)) {
         this.flashPluckAlert("Already plucked");
         console.log("submitted word contains all valid letters but was already found")
       } else {
-        console.log(this.currentQueue);
         this.checkQueue(this.currentQueue);
         console.log("submitted word contains all valid letters")
       }
@@ -138,6 +122,9 @@ export default {
     },
     cream: function () {
       return this.$store.getters.creamOfTheCrop;
+    },
+    pluckedWords: function () {
+      return Object.values(this.$store.getters.getPluckedWords);
     }
   },
   mounted: function () {
@@ -160,15 +147,6 @@ export default {
 <style scoped>
 .game-page__wrapper {
   margin-top: 100px;
-}
-
-.pluck-alert__wrapper {
-  margin-top: 20px;
-  min-height: 40px;
-}
-
-.pluck-alert__content {
-  font-size: 9pt;
 }
 
 </style>
