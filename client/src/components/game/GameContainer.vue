@@ -111,6 +111,9 @@ export default {
     cream: function () {
       return this.$store.getters.creamOfTheCrop;
     },
+    pangramList: function () {
+      return this.$store.getters.pangramList;
+    },
     pluckedWords: function () {
       return Object.values(this.$store.getters.getPluckedWords);
     }

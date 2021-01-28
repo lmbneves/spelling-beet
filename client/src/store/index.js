@@ -6,6 +6,7 @@ const state = {
     required: '',
     total_score: '',
     word_list: [],
+    pangram_list: [],
     pluckables: ''
   },
   pluckedWords: []
@@ -17,6 +18,9 @@ const getters = {
   },
   creamOfTheCrop: (state) => {
     return state.game.required;
+  },
+  pangramList: (state) => {
+    return state.game.pangram_list;
   },
   getPluckedWords: (state) => {
     return state.pluckedWords;
@@ -33,7 +37,8 @@ const actions = {
           letters: res.letters,
           required: res.required,
           total_score: res.total_score,
-          word_list: res.word_list
+          word_list: res.word_list,
+          pangram_list: res.pangram_list
         });
       });
   }
@@ -45,11 +50,11 @@ const mutations = {
     state.game.required = payload.required;
     state.game.total_score = payload.total_score;
     state.game.word_list = payload.word_list;
+    state.game.pangram_list = payload.pangram_list;
     state.game.pluckables = (payload.required).split("").concat(payload.letters);
   },
   addPluckedWord: function (state, word) {
     state.pluckedWords.push(word);
-    // st.$set(state.pluckedWords, state.pluckedWords.length, word);
   }
 }
 
