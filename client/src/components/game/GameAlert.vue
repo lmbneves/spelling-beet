@@ -7,11 +7,11 @@
         <v-alert
           :value="pluckAlert"
           class="pluck-alert__content"
-          color="#47839B"
+          :color="pluckAlertColor"
           dark
           transition="fade-transition"
           dense> 
-          {{ pluckMsg }} 
+          {{ pluckAlertMsg }} 
         </v-alert>
       </div>
     </v-col>
@@ -20,22 +20,44 @@
 </template>
 
 <script>
+import colors from 'vuetify/lib/util/colors'
+
 export default {
   name: 'GameAlert',
   data: function () {
     return {
       pluckAlert: false,
-      pluckMsg: ''
+      pluckAlertMsg: '',
+      pluckAlertColor: ''
     }
   },
   methods: {
     flashErrorAlert: function(msg) {
-      this.pluckMsg = msg;
+      this.pluckAlertMsg = msg;
+      this.pluckAlertColor = colors.red.darken3;
       this.pluckAlert = true;
       
       window.setInterval(() => {
         this.pluckAlert = false;
-      }, 3000);
+      }, 2000);
+    },
+    flashPangramAlert: function(msg) {
+      this.pluckAlertMsg = msg;
+      this.pluckAlertColor = colors.lime.darken1;
+      this.pluckAlert = true;
+      
+      window.setInterval(() => {
+        this.pluckAlert = false;
+      }, 2000);
+    },
+    flashPluckAlert: function() {
+      this.pluckAlertMsg = 'Nice!';
+      this.pluckAlertColor = colors.green.darken1;
+      this.pluckAlert = true;
+      
+      window.setInterval(() => {
+        this.pluckAlert = false;
+      }, 2000);
     }
   }
 }

@@ -22,6 +22,9 @@ const getters = {
   pangramList: (state) => {
     return state.game.pangram_list;
   },
+  wordList: (state) => {
+    return state.game.word_list;
+  },
   getPluckedWords: (state) => {
     return state.pluckedWords;
   }

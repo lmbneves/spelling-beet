@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import GameAlert from './GameAlert'
 import PlotContainer from './plot/PlotContainer'
 import PluckedList from './plucked/PluckedList'
@@ -42,17 +41,17 @@ export default {
     initGame: function() {
       this.$store.dispatch( "initGame" );
     },
-    checkQueue: function(wordToCheck) {
-      axios
-        .put('http://localhost:3000/plot', { wordToCheck: wordToCheck })
-        .then((res) => {
-          if (res.data.isWord) {
-            var word = res.data.word;
-            this.$store.commit('addPluckedWord', word.toUpperCase());
-          } else {
-            this.$refs.gameAlert.flashErrorAlert("Pluck doesn't exist");
-          }
-        });
+    checkQueue: function(word) {
+      if (this.wordList.includes(word)) {
+        if (this.pangramList.includes(word)) {
+          this.$refs.gameAlert.flashPangramAlert("Pangram!");
+        } else {
+          this.$refs.gameAlert.flashPluckAlert();
+        }
+        this.$store.commit('addPluckedWord', word.toUpperCase());
+      } else {
+        this.$refs.gameAlert.flashErrorAlert("Pluck doesn't exist");
+      }
     },
     addLetterToQueue: function (letter) {
       var letterVal = letter.toUpperCase();
@@ -112,7 +111,10 @@ export default {
       return this.$store.getters.creamOfTheCrop;
     },
     pangramList: function () {
-      return this.$store.getters.pangramList;
+      return Object.values(this.$store.getters.pangramList);
+    },
+    wordList: function () {
+      return this.$store.getters.wordList.map(a => a.word);
     },
     pluckedWords: function () {
       return Object.values(this.$store.getters.getPluckedWords);
