@@ -5,13 +5,13 @@
       cols="5">
       <div class="pluck-alert__wrapper">
         <v-alert
-          :value="pluckErrorAlert"
+          :value="pluckAlert"
           class="pluck-alert__content"
           color="#47839B"
           dark
           transition="fade-transition"
           dense> 
-          {{ pluckErrorMsg }} 
+          {{ pluckMsg }} 
         </v-alert>
       </div>
     </v-col>
@@ -22,9 +22,21 @@
 <script>
 export default {
   name: 'GameAlert',
-  props: {
-    pluckErrorAlert: Boolean,
-    pluckErrorMsg: String
+  data: function () {
+    return {
+      pluckAlert: false,
+      pluckMsg: ''
+    }
+  },
+  methods: {
+    flashErrorAlert: function(msg) {
+      this.pluckMsg = msg;
+      this.pluckAlert = true;
+      
+      window.setInterval(() => {
+        this.pluckAlert = false;
+      }, 3000);
+    }
   }
 }
 </script>

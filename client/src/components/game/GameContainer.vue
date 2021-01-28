@@ -4,9 +4,7 @@
       <v-col
         cols="12"
         md="6">
-        <GameAlert 
-          :pluckErrorAlert="pluckErrorAlert" 
-          :pluckErrorMsg="pluckErrorMsg" />
+        <GameAlert ref="gameAlert" />
         <PluckQueue ref="pluckQueue" />
         <PlotContainer />
       </v-col>
@@ -37,8 +35,6 @@ export default {
   data: function () {
     return {
       currentQueue: '',
-      pluckErrorAlert: false,
-      pluckErrorMsg: '',
       invalidPlucks: 0
     }
   },
@@ -54,7 +50,7 @@ export default {
             var word = res.data.word;
             this.$store.commit('addPluckedWord', word.toUpperCase());
           } else {
-            this.flashPluckAlert("Pluck doesn't exist");
+            this.$refs.gameAlert.flashErrorAlert("Pluck doesn't exist");
           }
         });
     },
@@ -75,16 +71,16 @@ export default {
     },
     submitQueue: function () {
       if (!this.currentQueue.includes(this.cream)) {
-        this.flashPluckAlert("Missing the cream of the crop");
+        this.$refs.gameAlert.flashErrorAlert("Missing the cream of the crop");
         console.log("submitted word does not contain daily letter")
       } else if (this.currentQueue.length <= 3) {
-        this.flashPluckAlert("Pluck is too short");
+        this.$refs.gameAlert.flashErrorAlert("Pluck is too short");
         console.log("submitted word is too short")
       } else if (this.invalidPlucks > 0) {
-        this.flashPluckAlert("Pluck contains invalid letters");
+        this.$refs.gameAlert.flashErrorAlert("Pluck contains invalid letters");
         console.log("submitted word contains invalid letters")
       } else if (this.pluckedWords.includes(this.currentQueue)) {
-        this.flashPluckAlert("Already plucked");
+        this.$refs.gameAlert.flashErrorAlert("Already plucked");
         console.log("submitted word contains all valid letters but was already found")
       } else {
         this.checkQueue(this.currentQueue);
@@ -106,14 +102,6 @@ export default {
       }
       a.splice(0, 0, this.cream);
       this.pluckables = a;
-    },
-    flashPluckAlert: function(errMsg) {
-      this.pluckErrorMsg = errMsg;
-      this.pluckErrorAlert = true;
-      
-      window.setInterval(() => {
-        this.pluckErrorAlert = false;
-      }, 3000);
     }
   },
   computed: {
