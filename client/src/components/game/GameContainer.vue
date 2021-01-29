@@ -11,6 +11,7 @@
       <v-col
         cols="12"
         md="6">
+        <ScoreStatus />
         <PluckedList />
       </v-col>
     </v-row>
@@ -22,6 +23,7 @@ import GameAlert from './GameAlert'
 import PlotContainer from './plot/PlotContainer'
 import PluckedList from './plucked/PluckedList'
 import PluckQueue from './queue/PluckQueue'
+import ScoreStatus from './ScoreStatus'
 
 export default {
   name: 'GameContainer',
@@ -29,7 +31,8 @@ export default {
     GameAlert,
     PlotContainer,
     PluckedList,
-    PluckQueue
+    PluckQueue,
+    ScoreStatus
   },
   data: function () {
     return {
@@ -48,6 +51,9 @@ export default {
         } else {
           this.$refs.gameAlert.flashPluckAlert();
         }
+
+        var score = this.wordScore(word);
+        this.$store.commit('addToScore', score)
         this.$store.commit('addPluckedWord', word.toUpperCase());
       } else {
         this.$refs.gameAlert.flashErrorAlert("Pluck doesn't exist");
@@ -101,7 +107,11 @@ export default {
       }
       a.splice(0, 0, this.cream);
       this.pluckables = a;
-    }
+    },
+    wordScore: function (word) {
+      var wordObj = this.$store.getters.getWordObj(word);
+      return wordObj.score;
+    },
   },
   computed: {
     pluckables: function () {

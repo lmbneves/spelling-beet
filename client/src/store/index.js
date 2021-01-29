@@ -4,12 +4,13 @@ const state = {
   game: {
     letters: [],
     required: '',
-    total_score: '',
+    max_score: '',
     word_list: [],
     pangram_list: [],
     pluckables: ''
   },
-  pluckedWords: []
+  pluckedWords: [],
+  total_score: 0
 }
 
 const getters = {
@@ -27,6 +28,13 @@ const getters = {
   },
   getPluckedWords: (state) => {
     return state.pluckedWords;
+  },
+  getWordObj: (state) => (word) => {
+    console.log(word);
+    return state.game.word_list.find(item => item.word === word);
+  },
+  getTotalScore: (state) => {
+    return state.total_score;
   }
 }
 
@@ -39,7 +47,7 @@ const actions = {
         context.commit( "INITGAME", {
           letters: res.letters,
           required: res.required,
-          total_score: res.total_score,
+          max_score: res.max_score,
           word_list: res.word_list,
           pangram_list: res.pangram_list
         });
@@ -51,13 +59,16 @@ const mutations = {
   INITGAME: function (state, payload) {
     state.game.letters = payload.letters;
     state.game.required = payload.required;
-    state.game.total_score = payload.total_score;
+    state.game.max_score = payload.max_score;
     state.game.word_list = payload.word_list;
     state.game.pangram_list = payload.pangram_list;
     state.game.pluckables = (payload.required).split("").concat(payload.letters);
   },
   addPluckedWord: function (state, word) {
     state.pluckedWords.push(word);
+  },
+  addToScore: function(state, points) {
+    state.total_score += points;
   }
 }
 

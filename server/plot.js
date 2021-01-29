@@ -9,14 +9,14 @@ router.get('/', (req, res) => {
     var game = middleware.initGame();
     var letters = game.letters.split("");
     var required = letters.shift();
-    var total_score = game.total_score;
+    var max_score = game.total_score;
     var word_list = game.word_list;
     var pangram_list = game.pangram_list;
 
     res.json({
       letters: letters,
       required: required,
-      total_score: total_score,
+      max_score: max_score,
       word_list: word_list,
       pangram_list: pangram_list
     });
